@@ -26,19 +26,15 @@ public class ArrayListCode implements Runnable{
         private static void runnable(ArrayList<File> files) {
             //search sub directories
             System.out.println("Bitte gib den Namen der gesuchten Datei ein.");
-            String filename = scr.next();
-            String foundpath = "";
+            File filename = new File(scr.next());
             for (File pathname : filesList) {
-                if (foundpath == "") {
-                    if (directoriesList.contains(filename) || filesList.contains(filename) || new File(directory + "\\" + pathname).isFile()) {
+                    if (directoriesList.contains(filename) || filesList.contains(filename)) {
                         if (filename.equals(pathname)) {
-                            foundpath = directory + "\\" + pathname;
-                            System.out.println("The file: " + filename + " can be fond at " + foundpath);
+                            System.out.println("The file: " + filename + " can be fond at " + filename.getAbsolutePath());
                         }
                     }
                 }
             }
-        }
         public static void main(String[] args) {
             System.out.println("Bitte gib das zu durchsuchende Verzeichnis an.");
             //enter file name and directory name
