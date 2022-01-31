@@ -1,14 +1,11 @@
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+
+import java.util.*;
 
 public class ArrayListCode {
 
-    public static ArrayList<File> directoriesList = new ArrayList<File>();
-    public static ArrayList<File> filesList = new ArrayList<File>();
+    public static ArrayList<File> directoriesList = new ArrayList<>();
+    public static ArrayList<File> filesList = new ArrayList<>();
     public static Scanner scr = new Scanner(System.in);
     public static String fileName;
     public static long directorieslistLength;
@@ -40,7 +37,7 @@ public class ArrayListCode {
         System.out.println("Bitte gib das zu durchsuchende Verzeichnis an.");
         //enter file name and directory name
         File dir = new File(scr.next());
-        runnable(listFilesAndDirectories(dir.listFiles()));
+        runnable(listFilesAndDirectories(Objects.requireNonNull(dir.listFiles())));
         System.out.println("Bitte gib den gesuchten Dateinamen ein.");
         fileName = scr.next();
         long timeStart = System.currentTimeMillis();
@@ -69,14 +66,14 @@ public class ArrayListCode {
         if (directoriesList.contains(fileName) || filesList.contains(fileName) || file.isFile()) {
             if (file.getName().equals(fileName)) {
                 System.out.println("Die gesuchte Datei ist unter: " + file.getAbsolutePath() + " zu finden.");
-                return new ArrayList<String>(Arrays.asList(fileName));
-            } else return new ArrayList<String>();
+                return new ArrayList<>(Collections.singletonList(fileName));
+            } else return new ArrayList<>();
         } else if (file.isDirectory()) {
             File[] files = file.listFiles();
-            if (files.length == 0 || files == null) {
-                return new ArrayList<String>();
+            if (Objects.requireNonNull(files).length == 0) {
+                return new ArrayList<>();
             } else {
-                ArrayList<String> foundpath = new ArrayList<String>();
+                ArrayList<String> foundpath = new ArrayList<>();
                 for (File newSubFile : files) {
                     foundpath.addAll(recursiveSearch(newSubFile, fileName));
                 }
