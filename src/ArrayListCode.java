@@ -49,22 +49,21 @@ public class ArrayListCode {
                 recursiveSearch(filesList.get(i), fileName);
             }
         }
-        Thread t1 = new Thread(new DemoRunnable());
+        Thread t1 = new Thread(() -> run(0,threadCountForDirectories));
+        Thread t2 = new Thread(() -> run(threadCountForDirectories,directorieslistLength));
         t1.start();
+        t2.start();
         final long timeStop = System.currentTimeMillis();
         time = timeStop - timeStart;
         System.out.println("Die benötigte Zeit betrag: " + time);
     }
 
-    private static class DemoRunnable implements Runnable {
-        @Override
-        public void run() {
-            for (int i = 0; i < directorieslistLength; i++) {
-                recursiveSearch(directoriesList.get(i), fileName);
-            }
+        public static void run(long from, long to) {
 
+            for (; from < to; from++) {
+                recursiveSearch(directoriesList.get((int) from), fileName);
+            }
         }
-    }
 
     public static ArrayList<String> recursiveSearch(File file, String fileName) {
         if (directoriesList.contains(fileName) || filesList.contains(fileName) || file.isFile()) {
