@@ -52,7 +52,7 @@ public class ArrayListCode {
         t2.start();
         final long timeStop = System.currentTimeMillis();
         time = timeStop - timeStart;
-        System.out.println("Die benötigte Zeit betrag: " + time);
+        System.out.println("Die benötigte Zeit betrag: " + time + "ms");
     }
 
         public static void run(long from, long to) {
@@ -83,4 +83,3 @@ public class ArrayListCode {
         return null;
     }
 }
-
