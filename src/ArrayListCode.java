@@ -29,15 +29,12 @@ public class ArrayListCode {
         return directoriesList;
     }
 
-    private static void runnable(ArrayList<File> files) {
-    }
-
     public static void main(String[] args) {
         long time;
         System.out.println("Bitte gib das zu durchsuchende Verzeichnis an.");
         //enter file name and directory name
         File dir = new File(scr.next());
-        runnable(listFilesAndDirectories(Objects.requireNonNull(dir.listFiles())));
+        listFilesAndDirectories(Objects.requireNonNull(dir.listFiles()));
         System.out.println("Bitte gib den gesuchten Dateinamen ein.");
         fileName = scr.next();
         long timeStart = System.currentTimeMillis();
